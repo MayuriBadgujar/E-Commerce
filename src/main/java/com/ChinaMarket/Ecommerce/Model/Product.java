@@ -3,6 +3,7 @@ package com.ChinaMarket.Ecommerce.Model;
 import com.ChinaMarket.Ecommerce.Enum.ProductCategory;
 import com.ChinaMarket.Ecommerce.Enum.ProductStatus;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,17 +14,18 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name="product")
+@Builder
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    private String productName;
+    private String productName ;
 
     private int price;
 
-    private String quantity;
+    private int quantity;
 
     @Enumerated(EnumType.STRING)
     ProductCategory productCategory;
@@ -42,7 +44,7 @@ public class Product {
     //bidirectional mapping
     //Relationship between product and item is one to one
     //product is parent and item is child
-    @OneToOne(mappedBy ="product ",cascade = CascadeType.ALL)
+    @OneToOne(mappedBy ="product",cascade = CascadeType.ALL)
     Item item;
 
 }
