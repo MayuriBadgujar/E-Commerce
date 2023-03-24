@@ -1,5 +1,6 @@
 package com.ChinaMarket.Ecommerce.Controller;
 
+import com.ChinaMarket.Ecommerce.Enum.ProductCategory;
 import com.ChinaMarket.Ecommerce.Exception.SellerNotFoundException;
 import com.ChinaMarket.Ecommerce.RequestDTO.ProductRequestDto;
 import com.ChinaMarket.Ecommerce.ResponseDTO.ProductResponseDto;
@@ -8,10 +9,8 @@ import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("/product")
@@ -33,5 +32,10 @@ public class ProductController {
         }
 
         return new ResponseEntity(productResponseDto,HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("/get/category/{productCategory}")
+    public List<ProductResponseDto> getAllProductByCategory(@PathVariable("productCategory") ProductCategory productCategory){
+        return productService.getProductByCategory(productCategory);
     }
 }

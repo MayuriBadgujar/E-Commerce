@@ -2,6 +2,7 @@ package com.ChinaMarket.Ecommerce.Model;
 
 import com.ChinaMarket.Ecommerce.Enum.CardType;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import net.bytebuddy.implementation.bind.MethodDelegationBinder;
@@ -13,6 +14,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name="card")
+@Builder
 public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
